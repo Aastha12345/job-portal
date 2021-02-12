@@ -17,7 +17,7 @@
         label{
             padding-top:10px;
         }
-        input {
+        .fullInput {
             border-width: 0 0 0.5px;
             width: 100%;
             padding: 5px;
@@ -34,8 +34,6 @@
             color:red;
         }
     </style>
-    
-
     <title>Register</title>
 </head>
 
@@ -45,31 +43,31 @@
     <p style="background-color:#e3dfc8;text-align: center;">
         <%= typeof msg !='undefined'?msg:'' %>
     </p>
-    <div class="container text-left" style="border:0.5px solid black;background-color:white;width:70%">       
+    <div class="container text-left" style="border:0.5px solid black;background-color:white;width:55%">       
 
         <h3 class="text-center">    REGISTER      </h3>
         <p>Fields marked <span class="required">*</span> are mandatory</p>
         <hr>
         <form action="/register" method="POST" enctype="multipart/form-data">
             <label for="name">Name<span class="required">*</span></label>
-            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="name" class ="fullInput" placeholder="Name">
             
             <label for="username">Username<span class="required">*</span></label>
-            <input type="text" name="username"  id="usernameid" placeholder="Username">
+            <input type="text" name="username"  id="usernameid"  class ="fullInput"  placeholder="Username">
             
             <label for="password" >Password<span class="required">*</span></label>
-            <input type="text" name="password" placeholder="Password">
+            <input type="text" name="password"  class ="fullInput" placeholder="Password">
             
             <label for="myImage">Image<span class="required">*</span>&nbsp&nbsp&nbsp&nbsp&nbsp(Allowed Formats are jpeg,jpg,png and gif)</label>
-            <input name="myImage" type="file">
+            <input name="myImage"  class ="fullInput" type="file">
             
             <label for="email" >Email<span class="required">*</span></label>
-            <input type="text" name="email" placeholder="email">
+            <input type="text" name="email"  class ="fullInput" placeholder="email">
             
             <label for="phonenumber">Phone Number<span class="required">*</span></label>
-            <input type="number" name="phonenumber" placeholder="Phone Number">
+            <input type="number" name="phonenumber"  class ="fullInput" placeholder="Phone Number">
 
-            <label for="Category" >Category<span class="required">*</span></label>
+            <label for="Category" >Category<span class="required">*</span></label><br>
             <input type="radio"  name="category" id="looking for job" value="looking for job">
             <label for="looking for job">looking for job</label><br>
             <input type="radio" id="employer" name="category" value="employer">
