@@ -22,7 +22,7 @@ var StorySchema = new mongoose.Schema({
         type:[String]
     },
     location:{
-        type:String
+        type:[String]
     },
     payscale:{
         type:String
@@ -32,11 +32,6 @@ var StorySchema = new mongoose.Schema({
     },
     apply:{
         type:String
-    },
-    persons:{
-        //stores the _id of persons who liked or disliked
-        type:[String],
-        default:"0"
     },
     comments:
     [{
