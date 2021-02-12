@@ -1,0 +1,66 @@
+<%- include('partials/header.ejs') %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        label{
+            padding-top:10px;
+        }
+        .greybox {
+            width: 100%;
+            padding: 5px;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+        input:focus {
+            border-color:grey;
+            outline:none;
+        }
+    </style>
+
+</head>
+
+
+<body style="background-color:#f0f0f0">
+
+    <div class="container text-left" style="margin-left:10%;">
+        
+        <h2>    PROFILE     </h2>
+
+        <img src="/uploads/profile/<%=user.photo%>" onerror="this.onerror=null; this.src='/image404.jpg'" height="50%" width="40%">
+        <br>
+        <label for="name">Name</label>
+        <p><%= user.name  %></p> 
+
+        <label for="name">Username</label>
+        <p><%= user.username  %></p> 
+        
+        <label for="email">Email</label>
+        <p><%= user.email %></p> 
+
+        <label for="phonenumber">Phone Number</label>
+        <p><%= user.phonenumber %></p> 
+
+        <% if(currentUser.username==user.username) {%>
+            <a href='/user/profile/edit/<%= user._id %>'><button class="btn btn-primary">EDIT INFO</button></a>
+        <% } %>
+    
+
+    </div>
+
+        
+</body>
+</html>
+
+<%- include('partials/footer.ejs') %>

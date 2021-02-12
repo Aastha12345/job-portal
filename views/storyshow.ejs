@@ -1,0 +1,81 @@
+<%- include('partials/header.ejs') %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Story Show</title>
+    
+    <style>
+        body
+        {
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        div{
+            margin-bottom:15px;
+        }
+        hr.commentseperate{
+            border:0.5px solid grey;
+        }
+    </style>
+
+</head>
+
+
+<body style="font-family:'Open Sans',Arial,sans-serif;letter-spacing: 1px;background-color:#f0f0f0">
+
+    <p style="background-color:#e3dfc8;text-align: center;">
+        <%= typeof msg !='undefined'?msg:'' %>
+    </p>
+
+    <div class="container" style="width:80%;" > 
+        
+            <h1><%= story.title %></h1>
+            <img src="/uploads/story/<%=story.photo%>" onerror="this.onerror=null; this.src='/image404.jpg'" height="60%" width="60%">
+            <br> 
+            <br> 
+            <p>Company  <%= story.company %></p>
+            <p>Category <%= story.category %></p>
+            <p>Location <%= story.location %></p>
+            <p>Pay Scale <%= story.payscale %></p>
+            <p>Category <%= story.contact %></p>
+            <p>Apply <%= story.apply %></p>                  
+            <p name="description"><%= story.description %></p>
+    <div>
+
+    <% if(currentUser._id==story.author._id) {%>
+        <a href='/story/edit/<%= story._id %>' style="float:left;"><button class="btn btn-primary">EDIT</button></a>
+    <% } %>
+    
+    <br>
+    <br>
+    <br>
+    <p style="background-color:white">This job is posted by <a href="/user/profile/<%=story.author._id%>"><%= story.author.username %></a></p>
+    <br>
+    
+        <h3>QUERY / COMMENTS</h3>
+        <form action="/story/comment/<%= story._id %>/<%= currentUser.username %>" method="POST">
+            <input type="text" style="margin-bottom:20px;height:45px;border-radius: 20px;" name="comment" class="col-md-12" placeholder="Add Comment">
+        </form>
+                
+        <% story.comments.forEach(comment=>{ %>
+            <div>
+                <p style="font-size:x-small"><%= comment.username %>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= comment.commenttime.toLocaleString() %></p>
+                <p><%= comment.text %></p>
+            </div>
+        <% }) %>
+
+
+</body>
+</html>
+
+<%- include('partials/footer.ejs') %>

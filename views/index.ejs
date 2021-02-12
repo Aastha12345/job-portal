@@ -1,0 +1,67 @@
+<%- include('partials/header.ejs') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>  
+
+    <title>Index</title>
+    <style>
+        html, body {
+            min-height: 100%;
+        }
+
+        @media only screen and (max-width:500px) {
+        /* For mobile phones: */
+        img{
+        height:50%;
+        width:80%;
+        }
+        .btn
+        {
+            padding:0;
+        }
+}
+
+    </style>
+</head>
+<body style="background-color:#f0f0f0">
+        <div class="container text-center" style="font-family:serif;letter-spacing: 0.20vw;">
+            <h1 style="font-size:3vw;">JOB-PORTAL</h1>
+            
+            <% if(currentUser){ %>
+                <% if(currentUser.category == "employer") {%>
+                    <div class="text-center">
+                        <a href='/story' ><button class="btn btn-info">Add New JOB</button></a>
+                    </div>        
+                <% } %>
+            <% } %>
+
+        </div> 
+
+        <div class="container" style="margin-top:5vw; margin-bottom:2vw; text-align:left;">
+            <% storys.forEach(story=> {%>
+                <div style= "background-color:white;height:330px;margin:2vw;">
+<!--                    <img src="/uploads/story/<%=story.photo%>" onerror="this.onerror=null; this.src='/image404.jpg'" style="float:left;" width="40%" height="100%">
+-->
+                <div class="col-md-4 col-sm-12">
+                        <h3><%= story.title %></h3>
+                        <p><%= story.company %></p>
+                        <p><%= story.category %></p>
+                        <p><%= story.location %></p>
+                        <p><%= story.payscale %></p>
+                        <p><%= story.contact %></p>
+                        <p><%= story.apply %></p>                        
+                        <a href='/story/show/<%=story._id %>'><button class="btn btn-primary">MORE INFO</button></a>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+</body>
+</html>
+
+<%- include('partials/footer.ejs') %>

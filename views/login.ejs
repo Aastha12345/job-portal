@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        input {
+            border-width: 0 0 0.5px;
+        }
+        input:focus {
+            border-color:grey;
+            outline:none;
+        }
+        .required
+        {
+            color:red;
+        }
+    </style>
+    
+    <title>Login</title>
+</head>
+
+
+<body style="background-repeat:no-repeat;background-image:url(/loginimage.jpg);background-size: 100% 100%;background-size:cover;font-family:'Times New Roman', Times, serif;letter-spacing: 1px;">
+    
+    <div style="height:40px;background-color:#ece8e8b7;">
+        <button style="float:right;" class="btn btn-success"><a style="color:white;" href="/register" method="GET">REGISTER</a></button>
+    </div>
+
+    <h4 style="background-color:#e3dfc8;text-align:center;">
+        <%= typeof msg !='undefined'?msg:'' %>
+    </h4>
+    
+    <div class="container text-center" style="border:0.5px solid black;background-color:white;font-size:medium;font-family:'Times New Roman', Times, serif;">   
+        <h2>    LOGIN      </h2>
+        <p>Fields marked <span class="required">*</span> are mandatory</p>
+        <p>Username:aastha123</p>
+        <p>Password:aastha123</p>
+        <hr>
+        <br>
+        <form action="/login" method="POST">
+            <label for="username">Username<span class="required">*</span>:</label>
+            <input type="text" name="username" value="aastha123" placeholder="Enter Username">
+            <br>
+            <label for="password">Password<span class="required">*</span>:</label>
+            <input type="text" name="password" value="aastha123" placeholder="Enter Password">
+
+            <br>
+            <button class="btn btn-success" style="margin:25px;">Submit</button>
+    
+        </form>
+
+    </div>
+</body>
+</html>
