@@ -3,7 +3,6 @@ const router = express.Router({
     mergeParams: true
 });
 
-const multer=require('multer')
 const path=require('path')
 const { body, validationResult } = require('express-validator');
 
@@ -15,23 +14,6 @@ const { response } = require('../app');
 router.get('/',middleware.isLoggedIn,(req,res)=>{
     res.render('story');
 })  
-
-
-
-
-/*router.post('/',[
-    body('description').isLength({min:50})
-],(req,res,next)=>{
-// Finds the validation errors in this request and wraps them in an object with handy functions
-const errors = validationResult(req);
-if (!errors.isEmpty()) {
-    return res.render('story',{ msg: 'Enter minimum 50 characters in description' });
-}
-else{
-    next();
-}
-})*/
-
 
 
 //saving story to database
@@ -57,9 +39,7 @@ router.post('/',middleware.isLoggedIn,function(req, res) {
                 res.redirect('/index')
             }
         });
-
 });
-
 
 router.get('/show/:_id',middleware.isLoggedIn,function(req,res){
     Story.findOne({_id:req.params._id},(err,story)=>{
@@ -75,7 +55,6 @@ router.get('/show/:_id',middleware.isLoggedIn,function(req,res){
     })
 })
 
-
 router.get('/edit/:_id',middleware.isLoggedIn,function(req,res){
     Story.findOne({_id:req.params._id},(err,story)=>{
         if(err)
@@ -89,7 +68,6 @@ router.get('/edit/:_id',middleware.isLoggedIn,function(req,res){
         }
     })
 })
-
 
 router.post('/edit/:_id',function(req,res){
     data1={
@@ -108,10 +86,9 @@ router.post('/edit/:_id',function(req,res){
     })
 })
 
-
-router.get('/find',function(req,res){
-    console.log(req.query.searchstory)
-    Story.find({title: { "$regex": req.query.searchstory, "$options": "i" }},(err,storys)=>{
+router.get('/filter',function(req,res){
+    console.log(req.query.category)
+    Story.find({$or: [{location: req.query.location}, {category: req.query.category}]} ,(err,storys)=>{
         if(err)
         {
             console.log('Something went wrong in storyroute')
@@ -121,7 +98,6 @@ router.get('/find',function(req,res){
         }
     })
 })
-
 
 router.post('/comment/:storyid/:username',function(req,res){
     data1={

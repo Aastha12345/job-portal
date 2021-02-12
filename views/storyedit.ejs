@@ -5,17 +5,14 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
-    <title>Story Edit</title>
-
+    <title>Edit Profile</title>
     <style>
         label{
             padding-top:10px;
@@ -31,26 +28,37 @@
             border-color:grey;
             outline:none;
         }
+
     </style>
 
 </head>
 
+<body style="background-color:#f0f0f0">  
+    <div class="container text-left" style="margin-left:10%;background-color:white">
 
-<body style="background-color:#f0f0f0">
-
-    <div class="container text-left" style="background-color:white">
             <form action='/story/edit/<%= story._id %>' method="POST">
                 <label for="title">Title</label>
-                <input class="inputfull"><%= story.title %></input>
+                <input name="title" class="inputfull" value="<%= story.title%>">
                 <br>
+
+                <label for="company">Company</label>
+                <input name="company" class="inputfull" value="<%= story.company%>">
+        
+                <label for="payscale">Pay Scale</label>
+                <input name="payscale" class="inputfull" value="<%= story.payscale%>">
+    
+                <label for="contact">Contact Number</label>
+                <input name="contact" class="inputfull" value="<%= story.contact %>">
+
+                <label for="apply">Apply Link</label>
+                <input name="apply" class="inputfull" value="<%= story.apply %>">
+
                 <label for="description">Description</label>
                 <textarea class="inputfull" rows="5" cols="100" name="description"><%= story.description %></textarea>
                 <br>
                 <a><button class="btn btn-primary">SAVE</button></a>
             </form>
     </div>
-
+            
 </body>
 </html>
-
-<%- include('partials/footer.ejs') %>

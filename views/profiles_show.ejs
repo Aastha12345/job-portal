@@ -32,12 +32,14 @@
     <div class="container" style="margin-top:5vw; margin-bottom:2vw; text-align:left;">
         <% users.forEach(user=> {%>
             <div style= "background-color:white;height:330px;margin:2vw;">
-                <img src="/uploads/profile
-                /<%=user.photo%>" onerror="this.onerror=null; this.src='/image404.jpg'" style="float:left;" width="40%" height="100%">
+                <img src="/uploads/profile/<%=user.photo%>" onerror="this.onerror=null; this.src='/image404.jpg'" style="float:left;" width="40%" height="100%">
                 <div class="col-md-4 col-sm-12">
-                    <p><%= user.name %></p>
-                    <p><%= user.email %></p>
-                    <p><%= user.phonenumber %></p>
+                    <br>
+                    <br>
+                    <br>
+                    <p><b>NAME:</b> <br> <%= user.name %></p>
+                    <p><b>EMAIL:</b> <br> <%= user.email %></p>
+                    <p><b>PHONE - NUMBER</b> <br> <%= user.phonenumber %></p>
                 </div>
             </div>
             <% }) %>

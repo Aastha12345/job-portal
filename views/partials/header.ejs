@@ -23,10 +23,6 @@
           
           <% } else if(currentUser) { %>
           
-            <li style="float:left;">
-              <form action="/story/find" method='GET'><input type="text" name="searchstory" placeholder="Search Blogs">
-              </form>
-            </li>
 
             <% if(currentUser.category == "employer") {%>
               <button class="btn" type="button"><a href="/user/profiles">Search Candidates</a></button>

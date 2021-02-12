@@ -44,21 +44,48 @@
         </div> 
 
         <div class="container" style="margin-top:5vw; margin-bottom:2vw; text-align:left;">
-            <% storys.forEach(story=> {%>
-                <div style= "background-color:white;height:330px;margin:2vw;">
-                <div class="col-md-4 col-sm-12">
-                        <h3><%= story.title %></h3>
-                        <p><%= story.company %></p>
-                        <p><%= story.category %></p>
-                        <p><%= story.location %></p>
-                        <p><%= story.payscale %></p>
-                        <p><%= story.contact %></p>
-                        <p><%= story.apply %></p>                        
-                        <a href='/story/show/<%=story._id %>'><button class="btn btn-primary">MORE INFO</button></a>
-                    </div>
+
+            <div class = "row">
+                <div class ="col-md-2">
+
+                    <form action="/story/filter" method='GET'>
+                        <h3>Filter</h3>
+                        <h4>
+                        <label for="category">Category</label><br>
+                        <input type="checkbox" name="category" value="Agriculture"> Agriculture<br />
+                        <input type="checkbox" name="category" value="Clothing"> Clothing<br />
+                        <input type="checkbox" name="category" value="Construction"> Construction<br />
+                        <input type="checkbox" name="category" value="Manufacturing"> Manufacturing<br />
+                        <input type="checkbox" name="category" value="Mining"> Mining<br />
+                        <br>
+                        <br>
+                        <label for="location">Location</label><br />
+                        <input type="checkbox" name="location" value="LocationA"> LocationA<br />
+                        <input type="checkbox" name="location" value="LocationB"> LocationB<br />
+                        <input type="checkbox" name="location" value="LocationC"> LocationC<br />
+                        <input type="checkbox" name="location" value="LocationD"> LocationD<br />
+                        <input type="checkbox" name="location" value="LocationE"> LocationE<br />
+                        <br>                            
+                        </h4>
+                    <button>FILTER</button>
+                    </form>          
                 </div>
-                <% }) %>
-            </div>
+
+                <div class ="col-md-8">
+                    <% storys.forEach(story=> {%>
+                        <div style= "background-color:white;height:230px;padding-left:100px;margin:2vw;">
+                        <div class="col-md-10 col-sm-12">
+                                <h3><%= story.title %></h3>
+                                <p><b>COMPANY: </b>  <%= story.company %></p>
+                                <p><b>CATEGORY: </b> <%= story.category %></p>
+                                <p><b>LOCATION: </b> <%= story.location %></p>
+                                <p><b>PAYSCALE: </b> <%= story.payscale %></p>
+                                <a href='/story/show/<%=story._id %>'><button class="btn btn-primary">MORE INFO</button></a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+        </div>
 </body>
 </html>
 

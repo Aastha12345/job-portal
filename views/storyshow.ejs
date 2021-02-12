@@ -26,6 +26,9 @@
         hr.commentseperate{
             border:0.5px solid grey;
         }
+        .gap{
+            padding-bottom: 100px;
+        }
     </style>
 
 </head>
@@ -40,16 +43,22 @@
     <div class="container" style="width:80%;" > 
         
             <h1><%= story.title %></h1>
-            <img src="/uploads/story/<%=story.photo%>" onerror="this.onerror=null; this.src='/image404.jpg'" height="60%" width="60%">
             <br> 
             <br> 
-            <p>Company  <%= story.company %></p>
-            <p>Category <%= story.category %></p>
-            <p>Location <%= story.location %></p>
-            <p>Pay Scale <%= story.payscale %></p>
-            <p>Category <%= story.contact %></p>
-            <p>Apply <%= story.apply %></p>                  
-            <p name="description"><%= story.description %></p>
+            <h4><b>COMPANY</b></span>  <br> <%= story.company %></h4>
+            <br>
+            <h4><b>CATEGORY</b> <br> <%= story.category %></h4>
+            <br>
+            <h4><b>LOCATION</b> <br> <%= story.location %></h4>
+            <br>
+            <h4><b>PAY SCALE</b><br> <%= story.payscale %></h4>
+            <br>
+            <h4><b>CATEGORY</b> <br> <%= story.contact %></h4>
+            <br>
+            <h4><b>APPLY</b> <br> <%= story.apply %></h4>                  
+            <br>
+            <h4><b>DESCRITPION</b></h4>
+            <p name="description"> <%= story.description %></p>
     <div>
 
     <% if(currentUser._id==story.author._id) {%>
