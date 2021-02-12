@@ -4,9 +4,6 @@ var StorySchema = new mongoose.Schema({
     title:{
         type:String
     },
-    photo:{
-        type:String
-    },
     author:{
         username:{
             type:String

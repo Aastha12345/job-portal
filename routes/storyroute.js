@@ -18,58 +18,8 @@ router.get('/',middleware.isLoggedIn,(req,res)=>{
 
 
 
-//Storing Image on diskStorage
-const storage=multer.diskStorage({
-    destination: './public/uploads/story',
-    filename:function(req,file,cb){
-        cb(null,file.fieldname+ '-' +Date.now()+
-        path.extname(file.originalname));
-    }
-})
 
-const upload=multer({
-    storage:storage,
-    fileFilter:function(req,file,cb){
-        checkfiletype(file,cb);
-    }
-  
-  }).single('myImage');
-  
-  function checkfiletype(file,cb)
-  {
-    //Allowed ext
-    const filetypes=/jpeg|jpg|png|gif/
-    //Check ext
-    const extname=filetypes.test(path.extname(file.originalname).toLowerCase());
-    //check mime
-    const mimetype=filetypes.test(file.mimetype);
-  
-    if(mimetype && extname)
-    {
-        return cb(null,true)
-    }
-    else
-    {
-        cb('Error:Images only')
-    }
-  }
-  
-//image saving on disk
-router.post('/',(req,res,next)=>{
-    upload(req,res,(err)=>{
-        if(err)
-        {
-            console.log({err:'Some error occured'})
-            res.render('story',{msg:err})
-        }
-        else{
-            next();
-        }
-    })
-})
-
-
-router.post('/',[
+/*router.post('/',[
     body('description').isLength({min:50})
 ],(req,res,next)=>{
 // Finds the validation errors in this request and wraps them in an object with handy functions
@@ -80,14 +30,13 @@ if (!errors.isEmpty()) {
 else{
     next();
 }
-})
+})*/
 
 
 
 //saving story to database
 router.post('/',middleware.isLoggedIn,function(req, res) {
         var title = req.body.title;
-        var photo = `${req.file.filename}`
         var description = req.body.description;
         var company = req.body.company;
         var category = req.body.category;
@@ -99,13 +48,12 @@ router.post('/',middleware.isLoggedIn,function(req, res) {
             username:req.user.username,
             _id:req.user._id
         }
-        var newStory = { title:title, description: description,author:author,photo:photo, company:company, category:category, location:location, contact:contact, payscale:payscale, apply:apply};
+        var newStory = { title:title, description: description,author:author, company:company, category:category, location:location, contact:contact, payscale:payscale, apply:apply};
         Story.create(newStory, function(err, newlyCreated) {
             if (err) {
                 console.log(err);
                 res.send({success:false,method:'Something went wrong in storyroute'})
             } else {
-                console.log("hello world" + newStory);
                 res.redirect('/index')
             }
         });
